@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barroca Films</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  
+</head>
+<body>
+<header id="header"></header>
+
+  <div class="carousel">
+    <div class="arrow left" onclick="prevSlide()">&#10094;</div>
+    <div class="arrow right" onclick="nextSlide()">&#10095;</div>
+
+    <div class="slides" id="slides">
+      <div class="slide">
+        <img class="slide-img" src="media/epileg/1.67.1_1.67.1.png" alt="Proyecto 1">
+        <video class="slide-video" src="media/epileg/video-portada-epileg.mp4" muted playsinline ></video>
+        <div class="gradient-overlay"></div>
+        <div class="slide-text" data-project="epileg">
+            <h1 id="slide-titol">Titol</h1>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Format</span>
+                    <span class="meta-value" id="slide-format">Un format</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Estrena</span>
+                    <span class="meta-value" id="slide-estrena">Any</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Durada</span>
+                    <span class="meta-value" id="slide-durada">Minuts</span>
+                </div>
+            </div>
+            <button class="btn-outline" id="openDrawerBtn" >
+                Detalls
+                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+                  </svg>
+              </button>
+              
+        </div>
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="media/memoria_historica/senyores.png" alt="Proyecto 2">
+        <video class="slide-video" src="media/epileg/video-portada-epileg.mov" muted playsinline ></video>
+        <div class="gradient-overlay"></div>
+        <div class="slide-text" data-project="memoria">
+            <h1 id="slide-titol">Titol</h1>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Format</span>
+                    <span class="meta-value" id="slide-format">Un format</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Estrena</span>
+                    <span class="meta-value" id="slide-estrena">Any</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Durada</span>
+                    <span class="meta-value" id="slide-durada">Minuts</span>
+                </div>
+            </div>
+            <button class="btn-outline" id="openDrawerBtn" >
+                Detalls
+                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+                  </svg>
+              </button>
+        </div>
+      </div>
+      <div class="slide">
+        <img class="slide-img" src="media/esberlada/stills_pedra seca_1.24.1.jpg" alt="Proyecto 3">
+        <video class="slide-video" src="media/esberlada/video-portada-esberlada.mp4" muted playsinline ></video>
+        <div class="gradient-overlay"></div>
+        <div class="slide-text" data-project="esberlada">
+            <h1 id="slide-titol">Titol</h1>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Format</span>
+                    <span class="meta-value" id="slide-format">Un format</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Estrena</span>
+                    <span class="meta-value" id="slide-estrena">Any</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Durada</span>
+                    <span class="meta-value" id="slide-durada">Minuts</span>
+                </div>
+            </div>
+            <button class="btn-outline" id="openDrawerBtn" >
+                Detalls
+                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+                  </svg>
+              </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-dots" id="navDots">
+      <!-- Se generan dinámicamente -->
+    </div>
+  </div>
+
+  <section class="project-gallery">
+    <div class="content-container">
+    <h1>Projectes</h1>
+    <div class="gallery-grid">
+      <div class="project-card project-info" id="openDrawerProject" data-project="epileg">
+        <img id="portada" src="" alt="Proyecto A">
+        <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol"></h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span>
+                <span class="meta-value" id="format"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Estrena</span>
+                <span class="meta-value" id="estrena"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Durada</span>
+                <span class="meta-value" id="durada"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="project-card project-info" id="openDrawerProject" data-project="memoria">
+        <img id="portada" src="" alt="Proyecto B">
+        <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol"></h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span>
+                <span class="meta-value" id="format"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Estrena</span>
+                <span class="meta-value" id="estrena"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Durada</span>
+                <span class="meta-value" id="durada"></span>
+              </div>
+        </div>
+      </div>
+      </div>
+      <div class="project-card project-info" id="openDrawerProject" data-project="esberlada">
+        <img id="portada" src="" alt="Proyecto C">
+        <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol"></h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span>
+                <span class="meta-value" id="format"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Estrena</span>
+                <span class="meta-value" id="estrena"></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Durada</span>
+                <span class="meta-value" id="durada"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+    </div>
+</div>
+  </section>
+
+  <section class="services" id="serveis">
+    <div class="content-container">
+      <div class="title-description-side">
+      <h1>Serveis</h1>
+      
+      <p>A banda dels projectes pròpis, col·laborem amb diverses entitats i institucions oferint serveis de producció audiovisual. 
+       <br> <a href ="contacte.html" class="btn-outline" style="margin:2rem 0" >
+                Contacte
+                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+                  </svg>
+                </a>
+      </p>
+      
+
+              </div>
+      <div class="gallery-grid">
+
+        <div class="project-card">
+          <a href="https://youtu.be/L_OPE8BmjxE?feature=shared" target="_blank">
+          <img src="media/serveis/tramuntanart.jpg" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Tramuntanart</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Mostra d'art</span>
+            </div>
+          </div>
+        </div>
+      </a>
+        </div>
+
+        <div class="project-card">
+          <a href="https://vimeo.com/900214461/edf3717e4e" target="_blank">
+          <img src="media/serveis/panta_rei.jpg" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Pantà rei</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Intervenció musical</span>
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
+
+        
+
+        <div class="project-card">
+          <a href="https://vimeo.com/1063673605/c2f75d5ba4?share=copy" target="_blank">
+          <img src="media/serveis/ballet_bsp.png" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Ballet BSP</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Enregistrament de ballet</span>
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
+
+        <div class="project-card">
+          <a href="" target="_blank">
+          <img src="media/serveis/boda.png" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Celebracions</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Celebracions</span>
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
+
+        <div class="project-card">
+          <a href="" target="_blank">
+          <img src="media/serveis/boda.png" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Entrevistes</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Entrevistes</span>
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
+
+        <div class="project-card">
+          <a href="" target="_blank">
+          <img src="media/serveis/fotografies.jpg" alt="Producción">
+          <div class="project-overlay">
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" viewBox="0 0 24 24" style="position:absolute;top:20px;right:20px;">
+                <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/>
+              </svg>
+          <h3 id="titol">Fotografies</h3>
+          <div class="project-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span> 
+                <span class="meta-value" id="format">Fotografia</span>
+            </div>
+          </div>
+        </div>
+        </a>
+        </div>
+        
+
+      </div>
+      
+    </div>
+
+  <div id="drawer" class="drawer">
+    <div class="drawer-content">
+      
+      <div class="drawer-header">
+        <img class="drawer-img" id="drawer-headerimage"  src="">
+        <button id="closeDrawerBtn" class="close-btn">×</button>
+        <h2 id="drawer-titol">Título del proyecto</h2>
+        <div class="project-meta" id="drawer-meta">
+            <div class="meta-item">
+                <span class="meta-label" >Format</span>
+                <span class="meta-value" id="drawer-format">Documental</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Estrena</span>
+                <span class="meta-value" id="drawer-estrena">2025</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Durada</span>
+                <span class="meta-value" id="drawer-durada">14 min</span>
+          </div>
+        </div>
+        </div>
+        <div class="drawer-info">
+      <p id="drawer-descripcio">Aquí va la informació del projecte...</p>
+      <a class="btn-solid" id="drawer-trailer" href="" target="_blank">
+        Veure tràiler
+        <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+          <path d="M7 17L17 7M7 7h10v10" stroke="white" stroke-width="1" stroke-linecap="miter" stroke-linejoin="miter"/> </svg>
+          </a>
+
+      <div class="meta-item">
+        <span class="meta-label" >Fotogrames</span>
+        <div class="fotogrames-carousel">
+            <button class="arrow left" id="thumbPrev">&#10094;</button>
+            <div class="thumb-window">
+            <div class="thumb-track" id="thumbTrack">
+            </div>
+    </div>
+            <button class="arrow right" id="thumbNext">&#10095;</button>    
+        </div>
+      </div>
+        
+      <div class="meta-item">
+        <span class="meta-label" >Repartiment</span>
+        <span class="meta-value" id="drawer-repartiment"></span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" >Realitzat per</span>
+        <span class="meta-value" id="drawer-realitzat"></span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" >Regió d'orígen</span>
+        <span class="meta-value" id="drawer-regio"></span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" >Àudio original</span>
+        <span class="meta-value" id="drawer-audio"></span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label" >Recorregut</span>
+        <span class="meta-value" id="drawer-recorregut"></span>
+      </div>
+      
+      </div>
+      </div>
+    </div>
+  </div>
+<footer id="footer"></footer>
+
+<div id="fullscreenViewer" class="fullscreen-hidden">
+  <button class="fullscreen-arrow left" id="fullscreenPrev">&#10094;</button>
+  <img src="" alt="Fotograma ampliado" id="fullscreenImg">
+  <button class="fullscreen-arrow right" id="fullscreenNext">&#10095;</button>
+  <button class="fullscreen-close" id="closeFullscreenBtn">×</button>
+</div>
+
+<div id="trailerModal"  style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;z-index:10001;">
+  <div style="position:relative;max-width:90vw;max-height:90vh;">
+    <button id="closeTrailerModal" style="position:absolute;top:10px;right:10px;font-size:2rem;background:none;color:white;border:none;cursor:pointer;z-index:10002;">×</button>
+    <div id="trailerEmbed"></div>
+  </div>
+</div>
+
+
+  <div id="backdrop" class="backdrop"></div>
+  
+
+  <script src="js.js"></script>
+
+
+</body>
+</html>
