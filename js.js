@@ -131,6 +131,59 @@ document.addEventListener("DOMContentLoaded", () => {
   let basePath = "";
   let fullscreenCurrent = 0;
 
+  // Ejemplo: imágenes posibles para cada slide
+  const slideImages = [
+    [
+      "media/epileg/fotogrames/1.png",
+      "media/epileg/fotogrames/2.png",
+      "media/epileg/fotogrames/3.png",
+      "media/epileg/fotogrames/4.png",
+      "media/epileg/fotogrames/5.png",
+      "media/epileg/fotogrames/6.png",
+      "media/epileg/fotogrames/7.png",
+      "media/epileg/fotogrames/8.png",
+      "media/epileg/fotogrames/9.png",
+      "media/epileg/fotogrames/10.png",
+      "media/epileg/fotogrames/11.png",
+      "media/epileg/fotogrames/12.png",
+      "media/epileg/fotogrames/13.png",
+      "media/epileg/fotogrames/14.png",
+      "media/epileg/fotogrames/15.png",
+      "media/epileg/fotogrames/16.png",
+      "media/epileg/fotogrames/17.png",
+      "media/epileg/fotogrames/18.png",
+      "media/epileg/fotogrames/19.png",
+    ],
+    [
+      "media/memoria_historica/fotogrames/1.png",
+      "media/memoria_historica/fotogrames/2.png",
+      "media/memoria_historica/fotogrames/3.png",
+      "media/memoria_historica/fotogrames/4.png",
+      "media/memoria_historica/fotogrames/5.png",
+      "media/memoria_historica/fotogrames/6.png",
+      "media/memoria_historica/fotogrames/7.jpg",
+      "media/memoria_historica/fotogrames/8.jpg",
+    ],
+    [
+      "media/esberlada/fotogrames/1.png",
+      "media/esberlada/fotogrames/2.png",
+      "media/esberlada/fotogrames/3.png",
+      "media/esberlada/fotogrames/4.png",
+      "media/esberlada/fotogrames/5.png",
+      "media/esberlada/fotogrames/6.png",
+      "media/esberlada/fotogrames/7.png",
+      "media/esberlada/fotogrames/8.png",
+    ],
+  ];
+
+  document.querySelectorAll(".slide-img").forEach((img, idx) => {
+    const imgs = slideImages[idx];
+    if (imgs && imgs.length > 0) {
+      const random = Math.floor(Math.random() * imgs.length);
+      img.src = imgs[random];
+    }
+  });
+
   // --- Ocultar meta-items vacíos ---
 
   function hideEmptyMetaItems(container) {
@@ -182,10 +235,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadThumbImages(projectKey) {
     if (projectKey === "epileg") {
       basePath = "media/epileg/fotogrames/";
-      numImages = 6;
+      numImages = 19;
     } else if (projectKey === "memoria") {
       basePath = "media/memoria_historica/fotogrames/";
-      numImages = 6;
+      numImages = 8;
     } else if (projectKey === "esberlada") {
       basePath = "media/esberlada/fotogrames/";
       numImages = 6;
@@ -401,9 +454,9 @@ const projectInfo = {
     portada: "media/cartell_epileg.jpg",
     descripcio:
       "La Maria Àngels, propietària d’un antic hostal del poble, que ara resta buit. En Carles Xavier, que deambula constantment acompanyat de l’Ombra, la seva gossa. En Jordi, que fa d’operari de manteniment municipal. La Marta, que retorna al pis familiar per ultimar les gestions d’una mudança. Quatre persones que coexisteixen en els paisatges ambivalents de Portbou.",
-    headerimage: "media/epileg/1.67.1_1.67.1.png",
+    headerimage: "media/epileg/fotogrames/4.png",
     trailer: "https://vimeo.com/985794131",
-    format: "Llargmetratge documental",
+    format: "Llargmetratge",
     estrena: "2025",
     durada: "72 min",
     repartiment:
@@ -417,12 +470,12 @@ const projectInfo = {
 
   memoria: {
     titol: "Memòria històrica de Cadaqués",
-    portada: "media/memoria_historica/senyores.png",
+    portada: "media/memoria_historica/fotogrames/6.png",
     descripcio:
-      "Un llargmetratge documental sobre la memòria històrica de Cadaqués, un document de preservació de la memòria individual de diverses persones del poble; la confecció d’un imaginari local i col·lectiu, la immortalització de les arrels i les tradicions de Cadaqués i la seva gent.",
-    headerimage: "media/memoria_historica/senyores.png",
+      "Llargmetratge documental sobre la memòria històrica de Cadaqués. Un document de preservació de la memòria individual i col·lectiva, a través del testimoniatge, el record i les vivències de moltes persones grans del poble que conversen amb na Mercè Donat.<br>Amb el suport de l’Ajuntament de Cadaqués.",
+    headerimage: "media/memoria_historica/fotogrames/7.png",
     format: "Llargmetratge documental",
-    estrena: "2026 - En desenvolupament",
+    estrena: "2026 (En desenvolupament)",
     durada: "-",
     realitzat:
       "Raimon Casanovas i Alba Bauçà<br>Amb el suport de l'Ajuntament de Cadaqués",
@@ -432,10 +485,10 @@ const projectInfo = {
   },
   esberlada: {
     titol: "Esberlada",
-    portada: "media/esberlada/stills_pedra seca_1.24.1.jpg",
+    portada: "media/esberlada/fotogrames/6.png",
     descripcio:
       "Esberlada desdibuixa es pas des temps des d’una mirada anacrònica sobre sa pedra seca, incloent es testimoniatge de peretaires de Cadaqués entrevistats per Mercè Donat.<br>Desenvolupat dins es marc de sa XII Trobada de Pedra Seca i Arquitectura Tradicional, que tingué lloc a Cadaqués del 19 al 22 d'octubre de 2023.",
-    headerimage: "media/esberlada/stills_pedra seca_1.24.1.jpg",
+    headerimage: "media/esberlada/fotogrames/6.png",
     format: "Curtmetratge documental",
     estrena: "2023",
     durada: "14 min",
