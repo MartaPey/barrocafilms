@@ -19,23 +19,21 @@ fetch("footer.html")
     document.getElementById("footer").innerHTML = data;
   });
 
-//header lado
+// === MENU LATERAL HEADER ===
 function toggleHeader() {
   const header = document.getElementById("header-display");
   header.classList.add("visible"); // Alterna la clase 'visible'
   backdrop.classList.add("active");
 
-  backdrop.addEventListener("click", () => {
-    backdrop.classList.remove("active");
-    header.classList.remove("visible");
-  });
+  backdrop.addEventListener("click", closeHeader);
 }
 
 function closeHeader() {
-  const header = document.getElementById("header-display");
-  header.classList.remove("visible"); // Alterna la clase 'visible'
+  document.getElementById("header-display").classList.remove("visible"); // Alterna la clase 'visible'
   backdrop.classList.remove("active");
 }
+
+// === SLIDER INICIAL ===
 
 const slides = document.getElementById("slides");
 const allSlides = document.querySelectorAll(".slide");
@@ -62,9 +60,9 @@ function updateSlide() {
   slides.style.transform = `translateX(-${currentIndex * 100}%)`;
 
   // Actualizar puntos
-  document.querySelectorAll(".dot").forEach((dot, i) => {
-    dot.classList.toggle("active", i === currentIndex);
-  });
+  document
+    .querySelectorAll(".dot")
+    .forEach((dot, i) => dot.classList.toggle("active", i === currentIndex));
 
   // Lanzar imagen + vídeo solo para el slide actual
   allSlides.forEach((slide, index) => {
@@ -75,12 +73,14 @@ function updateSlide() {
     img.style.opacity = "1";
     img.style.pointerEvents = "auto";
 
-    video.style.opacity = "0";
-    video.style.pointerEvents = "none";
-    video.pause();
-    video.currentTime = 0;
+    if (video) {
+      video.style.opacity = "0";
+      video.style.pointerEvents = "none";
+      video.pause();
+      video.currentTime = 0;
+    }
 
-    if (index === currentIndex) {
+    if (index === currentIndex && video) {
       showImageThenPlayVideo(slide);
     }
   });
@@ -110,15 +110,17 @@ for (let i = 0; i < allSlides.length; i++) {
   navDots.appendChild(dot);
 }
 
-// Drawer lateral
+// === DRAWER LATERAL I VISOR FULLSCREEN ===
 document.addEventListener("DOMContentLoaded", () => {
   // --- Variables ---
   const drawer = document.getElementById("drawer");
   const backdrop = document.getElementById("backdrop");
   const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+
   const thumbTrack = document.getElementById("thumbTrack");
   const thumbPrev = document.getElementById("thumbPrev");
   const thumbNext = document.getElementById("thumbNext");
+
   const fullscreenViewer = document.getElementById("fullscreenViewer");
   const fullscreenImg = document.getElementById("fullscreenImg");
   const fullscreenPrev = document.getElementById("fullscreenPrev");
@@ -133,52 +135,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ejemplo: imágenes posibles para cada slide
   const slideImages = [
-    [
-      "media/epileg/fotogrames/1.png",
-      "media/epileg/fotogrames/2.png",
-      "media/epileg/fotogrames/3.png",
-      "media/epileg/fotogrames/4.png",
-      "media/epileg/fotogrames/5.png",
-      "media/epileg/fotogrames/6.png",
-      "media/epileg/fotogrames/7.png",
-      "media/epileg/fotogrames/8.png",
-      "media/epileg/fotogrames/9.png",
-      "media/epileg/fotogrames/10.png",
-      "media/epileg/fotogrames/11.png",
-      "media/epileg/fotogrames/12.png",
-      "media/epileg/fotogrames/13.png",
-      "media/epileg/fotogrames/14.png",
-      "media/epileg/fotogrames/15.png",
-      "media/epileg/fotogrames/16.png",
-      "media/epileg/fotogrames/17.png",
-      "media/epileg/fotogrames/18.png",
-      "media/epileg/fotogrames/19.png",
-    ],
-    [
-      "media/memoria_historica/fotogrames/1.png",
-      "media/memoria_historica/fotogrames/2.png",
-      "media/memoria_historica/fotogrames/3.png",
-      "media/memoria_historica/fotogrames/4.png",
-      "media/memoria_historica/fotogrames/5.png",
-      "media/memoria_historica/fotogrames/6.png",
-      "media/memoria_historica/fotogrames/7.jpg",
-      "media/memoria_historica/fotogrames/8.jpg",
-    ],
-    [
-      "media/esberlada/fotogrames/1.png",
-      "media/esberlada/fotogrames/2.png",
-      "media/esberlada/fotogrames/3.png",
-      "media/esberlada/fotogrames/4.png",
-      "media/esberlada/fotogrames/5.png",
-      "media/esberlada/fotogrames/6.png",
-      "media/esberlada/fotogrames/7.png",
-      "media/esberlada/fotogrames/8.png",
-    ],
+    Array.from(
+      { length: 19 },
+      (_, i) => `media/epileg/fotogrames/${i + 1}.png`
+    ),
+    Array.from(
+      { length: 8 },
+      (_, i) => `media/memoria_historica/fotogrames/${i + 1}.png`
+    ),
+    Array.from(
+      { length: 8 },
+      (_, i) => `media/esberlada/fotogrames/${i + 1}.png`
+    ),
   ];
 
-  document.querySelectorAll(".slide-img").forEach((img, idx) => {
-    const imgs = slideImages[idx];
-    if (imgs && imgs.length > 0) {
+  document.querySelectorAll(".slide-img").forEach((img, i) => {
+    const imgs = slideImages[i];
+    if (imgs?.length) {
       const random = Math.floor(Math.random() * imgs.length);
       img.src = imgs[random];
     }
@@ -218,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
       data.recorregut || "";
 
     // Ocultar el botón si no hay enlace
-    const trailerBtn = document.getElementById("drawer-trailer");
+    const trailerBtn = document.querySelector(".drawer-trailer");
     if (!data.trailer || data.trailer === "-" || data.trailer === "#") {
       trailerBtn.style.display = "none";
     } else {
@@ -227,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Ocultar meta-items vacíos
-    const drawerInfo = document.querySelector(".drawer-info");
+    const drawerInfo = document.querySelector(".drawer-content");
     if (drawerInfo) hideEmptyMetaItems(drawerInfo);
   }
 
@@ -242,6 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (projectKey === "esberlada") {
       basePath = "media/esberlada/fotogrames/";
       numImages = 6;
+    } else if (projectKey === "celebracions") {
+      basePath = "media/serveis/celebracions/";
+      numImages = 4;
     }
     thumbTrack.innerHTML = "";
     thumbImages = [];
@@ -377,16 +353,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   });
 
-  // --- Abrir trailer en modal ---
+  // === Abrir trailer en modal ===
   const trailerModal = document.getElementById("trailerModal");
   const trailerEmbed = document.getElementById("trailerEmbed");
   const closeTrailerModal = document.getElementById("closeTrailerModal");
-  const trailerBtn = document.getElementById("drawer-trailer");
+  const trailerBtn = document.querySelector(".drawer-trailer");
 
-  trailerBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    // Obtén el enlace del tráiler actual
-    const url = trailerBtn.href;
+  function openTrailerModal(url) {
     let embedHtml = "";
 
     if (url.includes("youtube.com") || url.includes("youtu.be")) {
@@ -403,9 +376,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else if (url.includes("vimeo.com")) {
       // Extrae el ID de Vimeo
-      const matches = url.match(/vimeo\.com\/(\d+)/);
-      if (matches && matches[1]) {
-        embedHtml = `<iframe src="https://player.vimeo.com/video/${matches[1]}?autoplay=1" width="800" height="450" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+      const matches = url.match(/vimeo\.com\/(\d+)(?:\/([a-zA-Z0-9]+))?/);
+      if (matches) {
+        const videoId = matches[1];
+        const token = matches[2] ? `?h=${matches[2]}` : "";
+        embedHtml = `<iframe src="https://player.vimeo.com/video/${videoId}${token}" width="800" height="450" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
       }
     }
 
@@ -414,12 +389,24 @@ document.addEventListener("DOMContentLoaded", () => {
       trailerModal.style.display = "flex";
       document.body.style.overflow = "hidden";
     }
+  }
+
+  trailerBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    openTrailerModal(trailerBtn.href);
   });
 
   closeTrailerModal.addEventListener("click", function () {
     trailerModal.style.display = "none";
     trailerEmbed.innerHTML = "";
     document.body.style.overflow = "";
+  });
+
+  document.querySelectorAll(".card-trailer-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openTrailerModal(btn.href);
+    });
   });
 
   // --- ESCAPE KEY ---
@@ -493,14 +480,23 @@ const projectInfo = {
     estrena: "2023",
     durada: "14 min",
     trailer: "https://vimeo.com/874225549",
-    repartiment:
-      "Maria Àngles Macias, Carles Xavier Maga, Jordi Sors, Marta Prats",
     realitzat:
       "Alba Bauçà i Raimon Casanovas<br>Amb el suport de l'Ajuntament de Cadaqués",
     regio: "Cadaqués i Cap de Creus",
     audio: "Català",
     recorregut:
       "Projecció a La Cate Figueres<br>Projecció al Centre d'Art i Cultura ARBAR<br>Selecció al Festival Niu<br> Projeccióal Teatre Art i Joia<br>Estrena al Corral de la Gala",
+  },
+  celebracions: {
+    titol: "Celebracions",
+    format: "-",
+    estrena: "-",
+    durada: "-",
+    portada: "media/serveis/boda.png",
+    descripcio:
+      "Oferim serveis de registre videogràfic per a tota mena de celebracions i esdeveniments, adaptant-nos al format que es requereixi. Ja sigui per realitzar un resum o reel per compartir a les xarxes socials, o per enregistrar l’acte de manera íntegra. <br>Realitzem cobertures per a casaments, conferències, entrevistes i molts altres tipus d’esdeveniments. ",
+    headerimage: "media/serveis/boda.png",
+    trailer: "-",
   },
 };
 
