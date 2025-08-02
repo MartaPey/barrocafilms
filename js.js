@@ -48,7 +48,7 @@ function showImageThenPlayVideo(slide) {
     img.style.opacity = "0";
     video.style.opacity = "1";
     video.play();
-  }, 5000);
+  }, 10000);
 
   video.onended = () => {
     video.style.opacity = "0";
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ejemplo: imágenes posibles para cada slide
   const slideImages = [
     Array.from(
-      { length: 19 },
+      { length: 18 },
       (_, i) => `media/epileg/fotogrames/${i + 1}.png`
     ),
     Array.from(
@@ -154,6 +154,79 @@ document.addEventListener("DOMContentLoaded", () => {
     if (imgs?.length) {
       const random = Math.floor(Math.random() * imgs.length);
       img.src = imgs[random];
+      // Limpia clases previas de reencuadre
+      img.classList.remove(
+        "left",
+        "right",
+        "vint",
+        "trenta",
+        "quaranta",
+        "seixanta",
+        "setanta"
+      );
+
+      // Ejemplo: reencuadre manual según la imagen elegida
+      if (img.src.includes("epileg/fotogrames/1.png")) {
+        img.classList.add("quaranta");
+      }
+      if (img.src.includes("epileg/fotogrames/2.png")) {
+        img.classList.add("vint");
+      }
+      if (img.src.includes("epileg/fotogrames/3.png")) {
+        img.classList.add("quaranta");
+      }
+      if (img.src.includes("epileg/fotogrames/4.png")) {
+        img.classList.add("setanta");
+      }
+      if (img.src.includes("epileg/fotogrames/5.png")) {
+        img.classList.add("seixanta");
+      }
+      if (img.src.includes("epileg/fotogrames/7.png")) {
+        img.classList.add("quaranta");
+      }
+      if (img.src.includes("epileg/fotogrames/8.png")) {
+        img.classList.add("left");
+      }
+      if (img.src.includes("epileg/fotogrames/9.png")) {
+        img.classList.add("vint");
+      }
+      if (img.src.includes("epileg/fotogrames/10.png")) {
+        img.classList.add("quaranta");
+      }
+      if (img.src.includes("epileg/fotogrames/11.png")) {
+        img.classList.add("trenta");
+      }
+      if (img.src.includes("epileg/fotogrames/12.png")) {
+        img.classList.add("right");
+      }
+      if (img.src.includes("epileg/fotogrames/13.png")) {
+        img.classList.add("seixanta");
+      }
+      if (img.src.includes("epileg/fotogrames/14.png")) {
+        img.classList.add("setanta");
+      }
+      if (img.src.includes("epileg/fotogrames/15.png")) {
+        img.classList.add("right");
+      }
+      if (img.src.includes("epileg/fotogrames/16.png")) {
+        img.classList.add("setanta");
+      }
+      if (img.src.includes("epileg/fotogrames/17.png")) {
+        img.classList.add("seixanta");
+      }
+      if (img.src.includes("epileg/fotogrames/18.png")) {
+        img.classList.add("trenta");
+      }
+      if (img.src.includes("esberlada/fotogrames/2.png")) {
+        img.classList.add("right");
+      }
+      if (img.src.includes("esberlada/fotogrames/3.png")) {
+        img.classList.add("quaranta");
+      }
+      if (img.src.includes("esberlada/fotogrames/4.png")) {
+        img.classList.add("vint");
+      }
+      // Puedes añadir más condiciones según tus necesidades
     }
   });
 
@@ -208,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadThumbImages(projectKey) {
     if (projectKey === "epileg") {
       basePath = "media/epileg/fotogrames/";
-      numImages = 19;
+      numImages = 18;
     } else if (projectKey === "memoria") {
       basePath = "media/memoria_historica/fotogrames/";
       numImages = 8;
@@ -237,8 +310,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateThumbCarousel() {
-    const imageWidth = thumbTrack.querySelector("img")?.offsetWidth || 150;
-    const offset = thumbIndex * imageWidth;
+    const img = thumbTrack.querySelector("img");
+    if (!img) return;
+    const imageWidth = img.offsetWidth;
+
+    // Convertir 1rem a píxeles usando el valor real del documento
+    const remInPx = parseFloat(
+      getComputedStyle(document.documentElement).fontSize
+    );
+    const gap = remInPx; // 1rem en píxeles
+
+    const offset = thumbIndex * (imageWidth + gap);
     thumbTrack.style.transform = `translateX(-${offset}px)`;
   }
 
@@ -474,7 +556,7 @@ const projectInfo = {
     titol: "Esberlada",
     portada: "media/esberlada/fotogrames/6.png",
     descripcio:
-      "Esberlada desdibuixa es pas des temps des d’una mirada anacrònica sobre sa pedra seca, incloent es testimoniatge de peretaires de Cadaqués entrevistats per Mercè Donat.<br>Desenvolupat dins es marc de sa XII Trobada de Pedra Seca i Arquitectura Tradicional, que tingué lloc a Cadaqués del 19 al 22 d'octubre de 2023.",
+      "Esberlada desdibuixa es pas des temps des d’una mirada anacrònica sobre sa pedra seca, incloent es testimoniatge de peretaires de Cadaqués entrevistats per Mercè Donat.<br>-<br>Desenvolupat dins es marc de sa XII Trobada de Pedra Seca i Arquitectura Tradicional, que tingué lloc a Cadaqués del 19 al 22 d'octubre de 2023.",
     headerimage: "media/esberlada/fotogrames/6.png",
     format: "Curtmetratge documental",
     estrena: "2023",
@@ -494,7 +576,7 @@ const projectInfo = {
     durada: "-",
     portada: "media/serveis/boda.png",
     descripcio:
-      "Oferim serveis de registre videogràfic per a tota mena de celebracions i esdeveniments, adaptant-nos al format que es requereixi. Ja sigui per realitzar un resum o reel per compartir a les xarxes socials, o per enregistrar l’acte de manera íntegra. <br>Realitzem cobertures per a casaments, conferències, entrevistes i molts altres tipus d’esdeveniments. ",
+      "Oferim serveis de registre videogràfic per a tota mena de celebracions i esdeveniments, adaptant-nos al format que es requereixi. Ja sigui per realitzar un resum o reel per compartir a les xarxes socials, o per enregistrar l’acte de manera íntegra.<br>-<br>Realitzem cobertures per a casaments, conferències, entrevistes i molts altres tipus d’esdeveniments. ",
     headerimage: "media/serveis/boda.png",
     trailer: "-",
   },

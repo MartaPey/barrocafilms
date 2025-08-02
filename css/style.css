@@ -4,11 +4,23 @@
   box-sizing: border-box;
 }
 
-body,
 html {
   height: 100%;
   font-family: "Inter", Helvetica, Arial, sans-serif;
   scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1 0 auto;
+  background-color: black;
+}
+.footer {
+  flex-shrink: 0;
 }
 
 h2 {
@@ -20,6 +32,7 @@ h1,
 h2,
 h3 {
   font-weight: lighter;
+  line-height: 100%;
 }
 h1 b {
   font-weight: bold;
@@ -197,11 +210,33 @@ a {
   height: 100%;
   object-fit: cover;
   transition: opacity 0.5s ease-in-out;
+  object-position: center center;
 }
 
 .slide img {
   opacity: 1;
   z-index: -2;
+}
+
+.slide img.left {
+  object-position: left center;
+}
+
+.slide img.right {
+  object-position: right center;
+}
+.slide img.vint {
+  object-position: 20% center;
+}
+.slide img.trenta {
+  object-position: 30% center;
+}
+.slide img.quaranta {
+  object-position: 40% center;
+}
+
+.slide img.setanta {
+  object-position: 70% center;
 }
 
 .slide-video {
@@ -442,7 +477,6 @@ a {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 100%;
 }
 .drawer-img {
   position: absolute;
@@ -580,14 +614,16 @@ a {
   transition: opacity 0.3s ease;
 }
 
-.agenda-item a:hover img {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
 .agenda-item img {
   width: 100%;
   aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.agenda-item a:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .agenda-info-box {
@@ -745,6 +781,9 @@ a {
 }
 
 @media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
   .header-display {
     width: 100vw;
     height: 100%;
